@@ -10,15 +10,16 @@
 #include <stdlib.h>
 
 int main() {
-    char* filename = NULL;
+    char filename[100];
+    FILE* fp = NULL;
     char line[1024];
 
     //Get filename from user
-    printf("Enter filename: ");
+    // printf("Enter filename: ");
     scanf("%s", filename);
 
     //Open file
-    FILE* fp = fopen(filename, "r");
+    fp = fopen(filename, "r");
     if (fp == NULL) {
         printf("Error opening file");
         return -1;
@@ -30,17 +31,17 @@ int main() {
             col = 0;
             row++;
 
-            char* item = strtok(line, ","); //Separates line into items delineated on ","
+            char* item = strtok(line, ","); //Separates line into items delineated onf ","
 
             while (item){
                 if (col == 1) {
-                    printf("%s", item);
+                    printf("%s\n", item);
                 }
 
                 item = strtok(NULL, ",");
                 col++;
             }
-            puts("\n");
+            // puts("\n");
         }
         fclose(fp);
     }
